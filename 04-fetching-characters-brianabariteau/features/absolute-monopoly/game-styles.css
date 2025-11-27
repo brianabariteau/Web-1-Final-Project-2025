@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  font-family: "Press Start 2P", monospace;
+  background-color: #fff;
+  color: #000;
+}
+
+.title {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 24px;
+}
+
+.game {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  margin: 40px auto;
+}
+
+.player-bubble {
+  flex: 0 0 250px;
+}
+
+.player {
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.player img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+}
+
+.player h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.player h3 {
+  font-size: 12px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.player ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 5px 0;
+  text-align: left;
+}
+
+.game-stats {
+  flex: 1;
+  padding: 0 40px;
+}
+
+.business,
+.manufacturing {
+  border-left: 2px solid #000;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.price-button,
+.purchase-button,
+.make-item {
+  font-family: inherit;
+  font-size: 10px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.npc-character {
+  flex: 0 0 250px;
+  text-align: center;
+  position: relative;
+}
+
+.npc-bubble {
+  background: #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.npc-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 15px 10px 0;
+  border-style: solid;
+  border-color: #ccc transparent transparent transparent;
+}
+
+.npc img {
+  width: 80px;
+  height: auto;
+}
+
+.npc-name {
+  margin-top: 5px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
