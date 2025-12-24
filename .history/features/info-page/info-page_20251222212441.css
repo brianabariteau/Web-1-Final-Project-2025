@@ -1,0 +1,8 @@
+/* Full-screen background */
+.background {
+  position: absolute;
+  inset: 0;
+  width: 150%;
+  height: 150%;
+  z-index: -1;
+}

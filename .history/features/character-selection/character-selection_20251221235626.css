@@ -1,0 +1,482 @@
+/* -- General Page Layout -- */
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  font-family: "Press Start 2P", monospace;
+}
+
+/* Full-screen background */
+.background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* -- Character Selector Grid [avatar1/2/3] -- */
+
+.character-row {
+  /*display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  position: absolute;
+  top: 10%;
+  width: 100%;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  position: relative; /* not absolute */
+}
+
+/* All avatar boxes */
+.avatar1,
+.avatar2,
+.avatar3 {
+  /*width: 340px;
+  height: 450px;*/
+  width: min(28vw, 370px); /* 28% of viewport width, max 340px */
+  height: min(28vw, 440px);
+
+  background: transparent;
+  border: none;
+  padding: 0;
+
+  position: relative;
+  cursor: pointer;
+  transition: transform 120ms ease;
+}
+
+.avatar1:hover,
+.avatar2:hover,
+.avatar3:hover {
+  transform: scale(1.05);
+}
+
+/* The decorative box asset */
+.background-boxes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* If later you put the character image inside an avatar */
+.player-avatar {
+  position: relative;
+  z-index: 1;
+  width: 140px;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+/* Info inside the avatar (optional) */
+.player-info {
+  position: relative;
+  z-index: 2;
+  color: brown;
+  text-shadow: 2px 2px #000;
+  font-size: 14px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+/* ───────────── SCROLL ARROWS ABOVE TEXT BOX ───────────── */
+
+.scroll-arrows {
+  width: min(200vw, 950px); /* narrower than full screen */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* left arrow on left, right arrow on right */
+  align-items: center;
+
+  padding: 0 5vw; /* adjusts how far arrows sit from edges */
+  position: relative;
+  z-index: 15;
+  gap: 8rem;
+}
+
+/* =========================
+   ARROW BUTTON BASE
+========================= */
+.left-arrow,
+.right-arrow {
+  width: 150px;
+  height: 40px;
+
+  background: linear-gradient(to bottom, #e7b058, #dead68);
+  border-radius: 18px;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5), 0 7px 0 #c89451,
+    0 12px 22px rgba(0, 0, 0, 0.25);
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.left-arrow:hover,
+.right-arrow:hover {
+  filter: brightness(1.05);
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.6), 0 7px 0 #c89451,
+    0 0 18px rgba(255, 210, 130, 0.7), 0 0 36px rgba(255, 200, 100, 0.4);
+}
+
+.left-arrow:active,
+.right-arrow:active {
+  transform: translateY(5px);
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 3px 0 #c89451;
+}
+
+.arrowImg {
+  width: 100px;
+  height: auto;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.switch-characters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* space between avatars and arrows */
+
+  width: min(90vw, 1200px);
+  position: absolute;
+  top: 10%;
+  width: 100%;
+}
+
+/* Every stat becomes a tooltip target */
+.stat {
+  position: relative;
+  cursor: help;
+}
+
+/* Tooltip bubble */
+.stat:hover::after {
+  content: attr(data-info);
+  position: absolute;
+  left: 50%;
+  bottom: 120%;
+  transform: translateX(-50%);
+
+  width: max-content;
+  max-width: 220px;
+
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 10px;
+  line-height: 1.2;
+  text-shadow: none;
+
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Tooltip arrow */
+.stat:hover::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 110%;
+  transform: translateX(-50%);
+
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+
+  z-index: 998;
+}
+
+/* ───────────── TEXT BOX (your .box image) ───────────── */
+
+.bottom-panel {
+  position: absolute;
+  /*bottom: -3%;  how far from bottom of screen */
+  bottom: 4%;
+  left: 60%;
+  /*transform: translateX(-30%);  center horizontally */
+  transform: translateX(-45%);
+
+  width: min(70vw, 900px);
+  /*width: 40%;  adjust width as needed */
+  /*max-width: 900px; */
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* left | center | right */
+  align-items: center;
+  justify-items: center;
+  margin: 0;
+
+  z-index: 10;
+}
+
+.box {
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  color: #7a4a1f;
+  letter-spacing: 1.5px;
+
+  text-shadow: 1px 1px 0 #f4c87d, 0 0 8px rgba(255, 210, 130, 0.35);
+
+  background: linear-gradient(to bottom, #ebb652, #e0b56d);
+  padding: 14px 22px;
+  border-radius: 14px;
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5), 0 6px 0 #c89451;
+
+  pointer-events: none;
+}
+
+/* ───────────── CONFIRM + CANCEL BUTTONS ───────────── */
+
+.button-left,
+.button-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 0rem; /* spacing between confirm/cancel */
+  position: relative; /* NOT absolute */
+  z-index: 10;
+}
+
+.confirm,
+.cancel {
+  min-width: 200px;
+  padding: 16px 30px;
+
+  background: linear-gradient(to bottom, #e7b058, #dead68);
+  border: none;
+  border-radius: 18px;
+
+  cursor: pointer;
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5), 0 7px 0 #c89451,
+    0 12px 22px rgba(0, 0, 0, 0.25);
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.confirm p,
+.cancel p {
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  color: #7a4a1f;
+
+  text-shadow: 1px 1px 0 #f3d8a8;
+}
+
+.confirm:hover,
+.cancel:hover {
+  filter: brightness(1.05);
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.6), 0 7px 0 #c89451,
+    0 0 18px rgba(255, 210, 130, 0.7), 0 0 36px rgba(255, 200, 100, 0.4);
+}
+
+.confirm:active,
+.cancel:active {
+  transform: translateY(5px);
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 3px 0 #c89451;
+}
+
+/* Position them near bottom-right like your drawing */
+.cancel {
+  right: 10%;
+}
+
+/* ───────────── CHARACTERS ───────────── */
+.character {
+  position: relative;
+  z-index: 10; /* ensures text appears above the background box */
+  color: rgb(133, 74, 18);
+  justify-items: center;
+  text-align: center;
+  display: flex;
+  object-fit: contain;
+  /*padding: 12px 20px;*/
+  padding-top: 50px;
+  width: 100%;
+  height: 100%;
+  font-family: "Press Start 2P", monospace; /* matches your game font */
+  text-shadow: 2px 2px 0px #ffffff; /* retro look */
+}
+
+.inner-character {
+  width: 100%; /* smaller than full box so borders show */
+  height: 70%; /* keep some space top/bottom */
+  padding: 0.4rem; /* small internal padding */
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.1rem; /* tiny gaps between lines */
+
+  overflow-y: auto; /* <-- important: scroll if too tall */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.character-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.character-inner h3 {
+  margin: 0 0 4px 0;
+  font-size: clamp(12px, 1.3vw, 16px);
+}
+
+.character-inner p {
+  margin: 1px 0;
+  font-size: clamp(10px, 1.1vw, 13px);
+  line-height: 1.1;
+}
+
+/* Smaller sprite so it doesn't eat all vertical space */
+.character-inner .character-img {
+  width: 90px;
+  height: auto;
+  margin-bottom: 6px;
+}
+
+.character h3 {
+  margin: 0 0 10px 0;
+  /*font-size: 18px;*/
+  font-size: clamp(14px, 1.6vw, 18px);
+  letter-spacing: 1px;
+}
+
+.character p,
+.powers-list {
+  font-size: clamp(12px, 1.3vw, 14px);
+}
+
+.character p {
+  margin: 3px 0;
+  /*font-size: 14px;*/
+  line-height: 1.2;
+}
+
+.powers-list {
+  margin: 4px 0 0 16px;
+  padding: 0;
+  list-style-type: none;
+  /*font-size: 14px;*/
+}
+
+.character-img {
+  display: block;
+  margin: 0 auto 10px auto; /* center horizontally + space underneath */
+  width: 120px; /* adjust size */
+  height: auto;
+  image-rendering: pixelated;
+  z-index: 5;
+  pointer-events: none;
+  background: transparent;
+}
+
+@media (max-width: 900px) {
+  .character-row {
+    flex-direction: column;
+    top: 4%;
+    gap: 0.5rem;
+  }
+
+  .avatar1,
+  .avatar2,
+  .avatar3 {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .bottom-panel {
+    bottom: 2%;
+    width: 90vw;
+    grid-template-columns: auto;
+    row-gap: 0.5rem;
+  }
+
+  .buttonImg {
+    width: 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .arrowImg {
+    width: 80px;
+  }
+
+  .scroll-arrows {
+    gap: 1.5rem;
+    bottom: 30%;
+  }
+}
+
+@media (max-width: 600px) {
+  .confirm,
+  .cancel {
+    min-width: 160px;
+    padding: 14px 22px;
+  }
+
+  .confirm p,
+  .cancel p {
+    font-size: 1.4rem;
+  }
+
+  .box {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .left-arrow,
+  .right-arrow {
+    width: 70px;
+    height: 70px;
+  }
+
+  .arrowImg {
+    width: 32px;
+  }
+}
+
+/* UI elements use same font as Start / Mode pages */
+.confirm,
+.cancel,
+.box {
+  font-family: "Jersey 25", sans-serif;
+}

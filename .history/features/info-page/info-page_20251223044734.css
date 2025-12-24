@@ -1,0 +1,238 @@
+/* ───────────── BASE ───────────── */
+
+body {
+  margin: 0;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: auto;
+  overflow-x: hidden;
+
+  display: grid;
+  grid-template-columns: 220px minmax(320px, 380px) minmax(320px, 380px);
+  grid-template-rows: auto auto 1fr;
+  gap: 1.5rem;
+
+  padding: 3rem 3rem 3rem 18rem;
+  padding-top: 6rem;
+
+  font-family: "Jersey 25", sans-serif;
+}
+
+/* Background */
+.background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 140%;
+  z-index: -1;
+}
+
+/*Character Icon Card (top-center)*/
+
+.character-icon-box {
+  grid-column: 2 / 4;
+  grid-row: 1;
+
+  justify-self: center;
+  text-align: center;
+
+  background: rgba(180, 130, 60, 0.35);
+  border-radius: 16px;
+
+  padding: 1.4rem 2.2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 8px 0 #a87432,
+    0 16px 28px rgba(0, 0, 0, 0.35);
+}
+
+.character-icon-box h1 {
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: #6b3f18;
+  text-shadow: 1px 1px 0 #f2d19b;
+}
+
+.character-icon-box img {
+  width: 140px;
+  image-rendering: pixelated;
+}
+
+/*Main Stats Box (bottom-center)*/
+
+.main-info-box {
+  grid-column: 2;
+  grid-row: 2;
+
+  background: rgba(180, 130, 60, 0.35);
+  border-radius: 16px;
+
+  padding: 1.6rem 2rem;
+
+  overflow-y: auto;
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 8px 0 #a87432,
+    0 16px 28px rgba(0, 0, 0, 0.35);
+}
+
+.main-info-box h2 {
+  font-size: 1.9rem;
+  margin-bottom: 0.8rem;
+}
+
+.main-info-box h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0 0.4rem;
+}
+
+.main-info-box p {
+  font-size: 1.25rem;
+  margin: 2px 0;
+}
+
+/*Extra Info Box (right)*/
+
+.extra-info-box {
+  grid-column: 3;
+  grid-row: 2;
+
+  background: rgba(180, 130, 60, 0.35);
+  border-radius: 16px;
+
+  padding: 1.6rem 2rem;
+
+  overflow-y: auto;
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 8px 0 #a87432,
+    0 16px 28px rgba(0, 0, 0, 0.35);
+}
+
+.extra-info-box h2 {
+  font-size: 1.9rem;
+  margin-bottom: 0.8rem;
+}
+
+.extra-info-box h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0 0.4rem;
+}
+
+.extra-info-box p {
+  font-size: 1.2rem;
+  margin: 2px 0;
+}
+
+/*Text Color (matches parchment ink)*/
+
+.character,
+.main-info-box,
+.extra-info-box {
+  color: #5c3615;
+  text-shadow: 1px 1px 0 rgba(255, 235, 200, 0.4);
+}
+
+/*Mobile Behavior (stack like a scrollable dossier)*/
+
+@media (max-width: 900px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .character-icon-box,
+  .main-info-box,
+  .extra-info-box {
+    grid-column: 1;
+    width: 100%;
+  }
+}
+
+.scroll-buttons {
+  width: min(200vw, 950px); /* narrower than full screen */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+
+  grid-row: 3;
+
+  padding: 0 23vw; /* adjusts how far arrows sit from edges */
+  position: relative;
+  z-index: 15;
+  gap: 5rem;
+}
+
+/* =========================
+   ARROW BUTTON BASE
+========================= */
+.left-arrow,
+.right-arrow {
+  width: 150px;
+  height: 40px;
+
+  background: rgba(180, 130, 60, 0.35);
+  border-radius: 18px;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 8px 0 #a87432,
+    0 16px 28px rgba(0, 0, 0, 0.35);
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.return-button {
+  font-family: "Jersey 25", sans-serif;
+  font-size: 25px;
+  color: #6b3f18;
+
+  width: 150px;
+  height: 40px;
+
+  background: rgba(180, 130, 60, 0.35);
+  border-radius: 18px;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 8px 0 #a87432,
+    0 16px 28px rgba(0, 0, 0, 0.35);
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.left-arrow:hover,
+.right-arrow:hover,
+.return-button:hover {
+  filter: brightness(1.05);
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.6), 0 7px 0 #c89451,
+    0 0 18px rgba(255, 210, 130, 0.7), 0 0 36px rgba(255, 200, 100, 0.4);
+}
+
+.left-arrow:active,
+.right-arrow:active,
+.return-button:active {
+  transform: translateY(5px);
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 3px 0 #c89451;
+}
+
+.arrowImg {
+  width: 100px;
+  height: auto;
+  image-rendering: pixelated;
+  pointer-events: none;
+}

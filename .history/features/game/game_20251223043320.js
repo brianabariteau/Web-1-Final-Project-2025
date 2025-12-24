@@ -1,0 +1,7 @@
+"use strict";
+
+// * The Background Image
+const background = $("<img>")
+  .addClass("background")
+  .attr("src", "./assets/battle-background.png")
+  .attr("alt", "Background");

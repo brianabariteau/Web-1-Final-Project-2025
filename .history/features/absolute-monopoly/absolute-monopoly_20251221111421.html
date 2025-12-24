@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Absolute Monopoly</title>
+    <link rel="icon" type="image/x-icon" href="/assets/characters/zeus.png" />
+    <script type="module" defer src="./game.js"></script>
+    <link rel="stylesheet" href="./game-styles.css" />
+  </head>
+  <body>
+    <h1 class="title">Absolute Monopoly</h1>
+
+    <div class="game">
+      <!-- Player -->
+      <section class="player-bubble">
+        <div class="player">
+          <img class="player-avatar" />
+          <h2 class="player-username"></h2>
+
+          <h3>Stats</h3>
+          <ul class="player-stats">
+            <li class="player-resilience-stat">Resilience:</li>
+            <li class="player-exhaustion-stat">Exhaustion:</li>
+            <li class="player-defense-stat">Defense:</li>
+          </ul>
+
+          <h3>Items</h3>
+          <p class="player-items">...</p>
+        </div>
+      </section>
+
+      <!-- Game Stats-->
+      <section class="game-stats">
+        <button class="make-item">Make Item</button>
+
+        <div class="business">
+          <h3>Business</h3>
+          <p class="funds">Available Funds:</p>
+          <p class="inventory">Unsold Inventory:</p>
+          <p class="demand">Public Demand:</p>
+          <p class="price">
+            Price per Item:
+            <button class="price-button">+</button>
+            <button class="price-button">-</button>
+          </p>
+        </div>
+
+        <div class="manufacturing">
+          <h3>Manufacturing</h3>
+          <p class="items-per-second">Items per Second:</p>
+          <p class="raw-mat">Remaining Raw Material:</p>
+          <button class="purchase-button">Purchase: ($___)</button>
+          <p class="factores">Factories:</p>
+          <button class="purchase-button">Purchase: ($___)</button>
+        </div>
+      </section>
+
+      <!-- Sassy NPC -->
+      <section class="npc-character">
+        <div class="npc-bubble">
+          <p class="npc-text"></p>
+        </div>
+
+        <div class="npc">
+          <img class="npc-avatar" />
+          <p class="npc-name">Sassy NPC</p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
